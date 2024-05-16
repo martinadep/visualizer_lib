@@ -13,11 +13,11 @@ use crate::visualizer::visbackpack::VisBackPack;
 use crate::visualizer::visenergy::VisEnergy;
 use crate::visualizer::vismap::VisMap;
 
-mod textures;
-mod vismap;
-mod visenergy;
-mod visbackpack;
-mod visweather;
+pub mod textures;
+pub mod vismap;
+pub mod visenergy;
+pub mod visbackpack;
+pub mod visweather;
 
 pub(crate)  const PIXEL: f32 = 64.0;
 pub(crate) const SCALE: f32 = 0.5;
