@@ -14,7 +14,7 @@ pub mod visualizer;
 
 pub const WINDOW_WIDTH: i32 = 600;
 pub const WINDOW_HEIGHT: i32 = 600;
-pub const WORLD_DEF_SIZE: usize = 10;
+pub const WORLD_DEF_SIZE: usize = 30;
 
 ///Builds and runs the window
 pub fn start(vis_receiver : Receiver<VisData>) {

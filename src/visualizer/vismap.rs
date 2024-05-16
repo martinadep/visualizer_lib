@@ -13,7 +13,6 @@ use crate::visualizer::visweather::VisWeather;
 ///visualizable map structure
 pub struct VisMap {
     discovered_map: Vec<Vec<Option<(Texture, Texture)>>>,
-    //weather: WeatherType,
     visweather : VisWeather,
 
     world_size: usize,
