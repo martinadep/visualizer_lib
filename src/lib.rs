@@ -14,10 +14,10 @@ pub mod visualizer;
 
 pub const WINDOW_WIDTH: i32 = 600;
 pub const WINDOW_HEIGHT: i32 = 600;
-pub const WORLD_DEF_SIZE: usize = 30;
+//pub const WORLD_DEF_SIZE: usize = 30;
 
 ///Builds and runs the window
-pub fn start(vis_receiver : Receiver<VisData>) {
+pub fn start(vis_receiver : Receiver<VisData>, size : usize) {
   //let t = thread::spawn(move || {
         let mut c = ContextBuilder::new("tyrex", WINDOW_WIDTH, WINDOW_HEIGHT)
             .show_mouse(true)
@@ -25,12 +25,12 @@ pub fn start(vis_receiver : Receiver<VisData>) {
             .resizable(true)
             .build().expect("failed to build context");
 
-        let mut vis = Visualizer::new(&mut c, WORLD_DEF_SIZE, vis_receiver)
+        let mut vis = Visualizer::new(&mut c, size, vis_receiver)
             .expect("failed to create visualizer");
 
         //delete these if initializing by from_world_to_map() method
-        let world = WorldGenerator::new().set_size(WORLD_DEF_SIZE).set_seed(5).gen();
-        tests(&mut vis, &mut c, &world);
+        //let world = WorldGenerator::new().set_size(size).set_seed(5).gen();
+        //tests(&mut vis, &mut c, &world);
 
         //sposta il channel in start() invece che nel main per usare test_with_sender()
         //tests_with_sender(vis_sender, &mut vis, &mut c, &world);
