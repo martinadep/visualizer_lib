@@ -37,18 +37,54 @@ impl VisMap {
     }
 
     ///updates the map with the discovered tiles
-    pub fn update_map(&mut self, view: Vec<Vec<Option<Tile>>>, ctx: &mut Context) {
+   /* pub fn update_map(&mut self, view: Vec<Vec<Option<Tile>>>, ctx: &mut Context) {
         let (new_row, new_col) = (self.robot_position.0, self.robot_position.1);
         view.iter().enumerate().for_each(|(i, vector)| {
             vector.iter().enumerate().for_each(|(j, _)| {
                 let row = new_row + i - 1;
                 let col = new_col + j - 1;
                 if let Some(tile) = view[i][j].clone() {
-                    self.discovered_map[row - 1][col - 1] = Some((tile.tile_type.get_texture(ctx),
+                    self.discovered_map[row][col] = Some((tile.tile_type.get_texture(ctx),
                                                           tile.content.get_texture(ctx)));
                 }
             })
         });
+    }*/
+    pub(crate) fn update_map(&mut self, view: Vec<Vec<Option<Tile>>>, ctx: &mut Context){
+        let mut valid_cells = vec![vec![true;3];3];
+        let c_row = self.robot_position.0;
+        let c_col = self.robot_position.1;
+        if c_row == 0 {
+            valid_cells[0][0] = false;
+            valid_cells[0][1] = false;
+            valid_cells[0][2] = false;
+        }
+        if c_col == 0 {
+            valid_cells[0][0] = false;
+            valid_cells[1][0] = false;
+            valid_cells[2][0] = false;
+        }
+        if c_row == self.world_size-1 {
+            valid_cells[2][0] = false;
+            valid_cells[2][1] = false;
+            valid_cells[2][2] = false;
+        }
+        if c_col == self.world_size-1 {
+            valid_cells[0][2] = false;
+            valid_cells[1][2] = false;
+            valid_cells[2][2] = false;
+        }
+        for (i,row) in valid_cells.iter().enumerate() {
+            for (j, is_valid) in row.iter().enumerate() {
+                if *is_valid {
+                    if let None = self.discovered_map[c_row+i-1][c_col+j-1]{
+                        let tile = view[i][j].clone().unwrap();
+                        self.discovered_map[c_row+i-1][c_col+j-1] = Some((tile.tile_type.get_texture(ctx), tile.content.get_texture(ctx)));
+                    }
+
+                }
+            }
+        }
     }
     ///updates the robot (texture pointer) position on the map
     pub fn update_robot_pos(&mut self, new_pos: (usize, usize)) {
