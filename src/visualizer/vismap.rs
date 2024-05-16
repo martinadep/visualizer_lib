@@ -32,7 +32,7 @@ impl VisMap {
            // weather: WeatherType::Sunny,
             robot_texture: Texture::new(ctx, "./utils/robot.png").expect("failed to upload robot image"),
             robot_position: (1, 1),
-            world_size: size,
+            world_size: size + 2,
         }
     }
 
@@ -44,7 +44,7 @@ impl VisMap {
                 let row = new_row + i - 1;
                 let col = new_col + j - 1;
                 if let Some(tile) = view[i][j].clone() {
-                    self.discovered_map[row][col] = Some((tile.tile_type.get_texture(ctx),
+                    self.discovered_map[row + 1 ][col + 1] = Some((tile.tile_type.get_texture(ctx),
                                                           tile.content.get_texture(ctx)));
                 }
             })
