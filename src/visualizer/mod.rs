@@ -97,17 +97,10 @@ pub struct Visualizer {
     show_backpack: bool,
     map_pos: (f32, f32),
     scale: f32,
-
-    //to be removed
-    pub(crate) test: i32,
-    test_receiver: Receiver<i32>,
 }
 
 impl Visualizer {
-    pub fn new(ctx: &mut Context, test: i32, size: usize, receiver: Receiver<VisData>,
-               //to be removed
-               test_receiver: Receiver<i32>
-    ) -> tetra::Result<Visualizer> {
+    pub fn new(ctx: &mut Context, size: usize, receiver: Receiver<VisData>) -> tetra::Result<Visualizer> {
         Ok(
             Self {
                 map: VisMap::new(ctx, size),
@@ -117,10 +110,6 @@ impl Visualizer {
                 show_backpack: false,
                 map_pos: (0.0, 0.0),
                 scale: SCALE,
-                //to be removed
-                test_receiver,
-                test
-
             }
         )
     }
