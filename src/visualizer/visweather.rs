@@ -7,7 +7,7 @@ use rand::{self, Rng, thread_rng};
 use robotics_lib::world::environmental_conditions::WeatherType::*;
 use tetra::graphics::{DrawParams};
 use tetra::math::Vec2;
-use crate::start_fn::{WINDOW_HEIGHT, WINDOW_WIDTH};
+use crate::{WINDOW_HEIGHT, WINDOW_WIDTH};
 use crate::visualizer::textures::Texturizable;
 
 // NOTE: Using a high number here yields worse performance than adding more bunnies over

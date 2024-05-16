@@ -8,8 +8,9 @@ use robotics_lib::world::tile::{Content, Tile};
 use robotics_lib::world::world_generator::{Generator, World};
 use tetra::{Context, ContextBuilder};
 use tyrannousarust_rex_world_generator::WorldGenerator;
-
 use crate::visualizer::{VisData, Visualizer};
+
+mod visualizer;
 
 pub const WINDOW_WIDTH: i32 = 600;
 pub const WINDOW_HEIGHT: i32 = 600;
