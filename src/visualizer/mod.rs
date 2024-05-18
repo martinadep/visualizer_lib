@@ -114,7 +114,7 @@ impl Visualizer {
         )
     }
     pub(crate) fn update_map(&mut self, new_discovered: Vec<Vec<Option<Tile>>>, ctx: &mut Context) {
-        self.map.update_map(new_discovered, ctx)
+        self.map.update_map(new_discovered)
     }
     pub(crate) fn update_robot_pos(&mut self, new_pos: (usize, usize)) {
         self.map.update_robot_pos(new_pos)
