@@ -103,7 +103,7 @@ impl Visualizer {
     pub fn new(ctx: &mut Context, size: usize, receiver: Receiver<VisData>) -> tetra::Result<Visualizer> {
         Ok(
             Self {
-                map: VisMap::new(ctx, size),
+                map: VisMap::new(size),
                 energy: VisEnergy::new(ctx),
                 backpack: VisBackPack::new(ctx, 10),
                 receiver,
@@ -114,10 +114,10 @@ impl Visualizer {
         )
     }
     pub(crate) fn update_map(&mut self, new_discovered: Vec<Vec<Option<Tile>>>, ctx: &mut Context) {
-        self.map.update_map(new_discovered)
+        self.map.update_discover(new_discovered)
     }
     pub(crate) fn update_robot_pos(&mut self, new_pos: (usize, usize)) {
-        self.map.update_robot_pos(new_pos)
+        self.map.change_robot_pos(new_pos)
     }
     pub(crate) fn update_energy(&mut self, energy: usize) {
         self.energy.update(energy)
@@ -126,7 +126,7 @@ impl Visualizer {
         self.backpack.update(backpack);
     }
     pub(crate) fn update_weather(&mut self, weather_type: WeatherType){
-        self.map.update_weather(weather_type);
+        self.map.change_weather(weather_type);
     }
 }
 

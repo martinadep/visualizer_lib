@@ -46,15 +46,15 @@ impl Drop {
 
         Drop {
             drop_type,
-            position : position,
-            velocity: velocity,
+            position,
+            velocity,
         }
     }
 
 }
 
 pub struct VisWeather {
-    pub droptype : WeatherType,
+    droptype : WeatherType,
     rng : ThreadRng,
     drops: Vec<Drop>,
 }

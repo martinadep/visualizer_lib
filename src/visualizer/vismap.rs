@@ -15,24 +15,22 @@ pub struct VisMap {
     visweather : VisWeather,
 
     world_size: usize,
-    robot_texture: Texture,
     robot_position: (usize, usize),
 }
 
 impl VisMap {
     ///create a new viusalizable [size x size] map of 'None' contents
-    pub fn new(ctx: &mut Context, size: usize) -> Self {
+    pub fn new(size: usize) -> Self {
         let mut mappa = vec![vec![None; size]; size];
         Self {
             visweather : VisWeather::new(WeatherType::Rainy),
             discovered_map: mappa,
-            robot_texture: Texture::new(ctx, "./utils/robot.png").expect("failed to upload robot image"),
-            robot_position: (1, 1),
-            world_size: size + 2,
+            robot_position: (0, 0),
+            world_size: size,
         }
     }
 
-    pub(crate) fn update_map(&mut self, view: Vec<Vec<Option<Tile>>>){
+    pub(crate) fn update_discover(&mut self, view: Vec<Vec<Option<Tile>>>){
         let mut valid_cells = vec![vec![true;3];3];
         let c_row = self.robot_position.0;
         let c_col = self.robot_position.1;
@@ -69,15 +67,11 @@ impl VisMap {
         }
     }
     ///updates the robot (texture pointer) position on the map
-    pub fn update_robot_pos(&mut self, new_pos: (usize, usize)) {
+    pub fn change_robot_pos(&mut self, new_pos: (usize, usize)) {
         self.robot_position = new_pos;
     }
-
     ///updates the weather
-    pub fn update_weather(&mut self, weather_type: WeatherType){
-        println!("weather updated from {:?} to {:?}", self.visweather, weather_type);
-        self.visweather = VisWeather::new(weather_type);
-    }
+    pub fn change_weather(&mut self, weather_type: WeatherType){ self.visweather = VisWeather::new(weather_type);}
 
     ///draws the map and the robot (texture pointer)
     pub fn draw(&mut self, ctx: &mut Context, map_pos: (f32, f32), scale: f32) {
