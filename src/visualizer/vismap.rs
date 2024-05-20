@@ -84,7 +84,12 @@ impl VisMap {
 
         for (xrobot, row) in self.discovered_map.iter().enumerate() {
             for (yrobot, opt_tile) in row.iter().enumerate() {
-                if opt_tile.is_some() && x_pixel < WINDOW_WIDTH as f32 && y_pixel < WINDOW_HEIGHT as f32{
+                if opt_tile.is_some()
+                    && x_pixel < WINDOW_WIDTH as f32
+                    && y_pixel < WINDOW_HEIGHT as f32
+                    && x_pixel >= 0.0
+                    && y_pixel > 0.0
+                {
                     let tile = opt_tile.clone().unwrap();
                     tile.tile_type.draw(tileset.clone(), ctx,
                                         DrawParams::new()
