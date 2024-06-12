@@ -27,12 +27,12 @@ pub(crate) const TOP_OFFSET: f32 = 64.0;
 
 ///struct containing data to be transmitted between threads
 pub struct VisData {
-    recv_energy: usize,
-    recv_coordinates: (usize, usize),
-    recv_discovered_tiles: Option<Vec<Vec<Option<Tile>>>>,
-    recv_backpack: Option<HashMap<Content, usize>>,
-    recv_weather: Option<WeatherType>,
-    recv_rizz_text: Option<String>,
+    pub recv_energy: usize,
+    pub recv_coordinates: (usize, usize),
+    pub recv_discovered_tiles: Option<Vec<Vec<Option<Tile>>>>,
+    pub recv_backpack: Option<HashMap<Content, usize>>,
+    pub recv_weather: Option<WeatherType>,
+    pub recv_rizz_text: Option<String>,
 }
 
 impl VisData {
