@@ -1,12 +1,13 @@
 use std::fmt::{Debug, Formatter};
-use std::path::Display;
-use robotics_lib::world::environmental_conditions::WeatherType;
-use tetra::{Context, State};
-use rand::rngs::ThreadRng;
+
 use rand::{self, Rng, thread_rng};
+use rand::rngs::ThreadRng;
+use robotics_lib::world::environmental_conditions::WeatherType;
 use robotics_lib::world::environmental_conditions::WeatherType::*;
-use tetra::graphics::{DrawParams};
+use tetra::{Context, State};
+use tetra::graphics::DrawParams;
 use tetra::math::Vec2;
+
 use crate::{WINDOW_HEIGHT, WINDOW_WIDTH};
 use crate::visualizer::textures::Texturizable;
 
@@ -14,9 +15,10 @@ use crate::visualizer::textures::Texturizable;
 // time - I think this is due to all of the RNG being run on the same tick...
 const INITIAL_DROPS: usize = 100;
 const GRAVITY: f32 = 2.5;
+const CLOUDS: usize = 35;
 
 pub struct Drop {
-    drop_type : WeatherType,
+    drop_type: WeatherType,
     position: Vec2<f32>,
     velocity: Vec2<f32>,
 }
@@ -50,12 +52,11 @@ impl Drop {
             velocity,
         }
     }
-
 }
 
 pub struct VisWeather {
-    droptype : WeatherType,
-    rng : ThreadRng,
+    droptype: WeatherType,
+    rng: ThreadRng,
     drops: Vec<Drop>,
 }
 
@@ -78,7 +79,7 @@ impl VisWeather {
                 drop_numbers = 1;
             }
             Foggy => {
-                drop_numbers = 5;
+                drop_numbers = CLOUDS;
             }
             _ => {}
         }
@@ -97,20 +98,18 @@ impl VisWeather {
 }
 
 impl State for VisWeather {
-    fn update(&mut self, ctx: &mut Context) -> tetra::Result {
+    fn update(&mut self, ctx : &mut Context) -> tetra::Result {
         for drop in &mut self.drops {
             drop.position += drop.velocity;
 
             if drop.position.x > WINDOW_WIDTH as f32 {
                 drop.position.x = 0.0;
-            }
-            else if drop.position.x < 0.0 {
+            } else if drop.position.x < 0.0 {
                 drop.position.x = WINDOW_WIDTH as f32;
             }
             if drop.position.y > WINDOW_HEIGHT as f32 {
                 drop.position.y = 0.0;
-            }
-            else if drop.position.y < 0.0 {
+            } else if drop.position.y < 0.0 {
                 drop.position.y = WINDOW_HEIGHT as f32;
             }
         }
