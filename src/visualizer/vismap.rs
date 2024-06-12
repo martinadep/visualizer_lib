@@ -19,7 +19,7 @@ pub struct VisMap {
 }
 
 impl VisMap {
-    ///create a new viusalizable [size x size] map of 'None' contents
+    ///creates a new viusalizable [size x size] map of 'None' contents
     pub fn new(size: usize) -> Self {
         let new_mappa = vec![vec![None; size]; size];
 
@@ -30,6 +30,7 @@ impl VisMap {
             world_size: size,
         }
     }
+    ///draws the map
     pub fn new_draw(&mut self, ctx: &mut Context, map_pos: (f32, f32), scale: f32, style : usize) {
         self.visweather.update(ctx);
         let mut y_pixel = map_pos.1;
@@ -73,6 +74,7 @@ impl VisMap {
         }
         self.visweather.draw(ctx);
     }
+    ///updates visulizer's memory inserting 'view' vec
     pub(crate) fn update_map(&mut self, view: Vec<Vec<Option<Tile>>>) {
         let mut valid_cells = vec![vec![true; 3]; 3];
         let c_row = self.robot_position.0;

@@ -11,8 +11,6 @@ use tetra::math::Vec2;
 use crate::{WINDOW_HEIGHT, WINDOW_WIDTH};
 use crate::visualizer::textures::Texturizable;
 
-// NOTE: Using a high number here yields worse performance than adding more bunnies over
-// time - I think this is due to all of the RNG being run on the same tick...
 const INITIAL_DROPS: usize = 100;
 const GRAVITY: f32 = 2.5;
 const CLOUDS: usize = 35;
