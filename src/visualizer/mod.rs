@@ -36,6 +36,45 @@ pub struct VisData {
 }
 
 impl VisData {
+    pub fn new(energy: usize, coordinates: (usize, usize),
+               discovered_tiles: Option<Vec<Vec<Option<Tile>>>>,
+               backpack: Option<HashMap<Content, usize>>,
+               weather_type: Option<WeatherType>,
+               rizz_text : Option<String>) -> Self {
+        Self {
+            recv_energy: energy,
+            recv_coordinates: coordinates,
+            recv_discovered_tiles: {
+                if discovered_tiles.is_some() {
+                    Some(discovered_tiles.unwrap())
+                } else {
+                    None
+                }
+            },
+            recv_backpack: {
+                if backpack.is_some() {
+                    Some(backpack.unwrap())
+                } else {
+                    None
+                }
+            },
+            recv_weather:{
+                if weather_type.is_some() {
+                    Some(weather_type.unwrap())
+                } else {
+                    None
+                }
+            },
+            recv_rizz_text: {
+                if rizz_text.is_some() {
+                    Some(rizz_text.unwrap())
+                } else {
+                    None
+                }
+            },
+        }
+    }
+
     /// - energy : {    }
     /// - coordinates : {   }
     /// - discovered_tiles : None
