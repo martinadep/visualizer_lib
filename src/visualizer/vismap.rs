@@ -100,10 +100,10 @@ impl VisMap {
         for (i, row) in valid_cells.iter().enumerate() {
             for (j, is_valid) in row.iter().enumerate() {
                 if *is_valid {
-                    if let None = self.discovered_map[c_row + i - 1][c_col + j - 1] {
+                    //if let None = self.discovered_map[c_row + i - 1][c_col + j - 1] {
                         let tile = view[i][j].clone().unwrap();
                         self.discovered_map[c_row + i - 1][c_col + j - 1] = Some(tile);
-                    }
+                   // }
                 }
             }
         }
