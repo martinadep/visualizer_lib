@@ -179,7 +179,7 @@ impl Visualizer {
                 texts: VisEnergy::new(ctx),
                 backpack: VisBackPack::new(ctx, 16),
                 receiver,
-                show_backpack: false,
+                show_backpack: true,
                 map_pos: (0.0, 0.0),
                 scale: SCALE,
             }
