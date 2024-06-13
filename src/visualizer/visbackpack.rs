@@ -49,22 +49,27 @@ impl VisBackPack {
                     .position(Vec2::new(x + pos.0, pos.1))
                     .scale(Vec2::new(self.scale, self.scale)),
             );
-            cont.draw(
-                texture.clone(),
-                ctx,
-                DrawParams::new()
-                    .position(Vec2::new(x + to_center_pos + pos.0, pos.1 + to_center_pos))
-                    .scale(Vec2::new(content_scale, content_scale)),
-            );
-            self.text.draw(
-                ctx,
-                DrawParams::new()
-                    .position(Vec2::new(x + pos.0, pos.1))
-                    .scale(Vec2::new(self.scale * 2.0, self.scale * 2.0)),
-            );
+
+            if quantity > &0usize {
+                cont.draw(
+                    texture.clone(),
+                    ctx,
+                    DrawParams::new()
+                        .position(Vec2::new(x + to_center_pos + pos.0, pos.1 + to_center_pos))
+                        .scale(Vec2::new(content_scale, content_scale)),
+                );
+                self.text.draw(
+                    ctx,
+                    DrawParams::new()
+                        .position(Vec2::new(x + pos.0, pos.1))
+                        .scale(Vec2::new(self.scale * 2.0, self.scale * 2.0)),
+                );
+            }
+
 
             x += PIXEL * self.scale;
         }
+
 
         let voids = self.size - self.contents.len();
         for _ in 0..voids {
@@ -79,6 +84,7 @@ impl VisBackPack {
     }
     pub fn update(&mut self, new_backpack: HashMap<Content, usize>) {
         //println!("backpack has been updated!");
+        self.size = new_backpack.len();
         self.contents = new_backpack;
     }
 }
