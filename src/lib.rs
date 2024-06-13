@@ -8,8 +8,8 @@ use crate::visualizer::{VisData, Visualizer};
 
 pub mod visualizer;
 
-pub const WINDOW_WIDTH: i32 = 600;
-pub const WINDOW_HEIGHT: i32 = 600;
+pub const WINDOW_WIDTH: i32 = 800;
+pub const WINDOW_HEIGHT: i32 = 800;
 
 ///Builds and runs the window
 pub fn start(vis_receiver: Receiver<VisData>, size: usize) {

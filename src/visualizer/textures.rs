@@ -8,12 +8,16 @@ use robotics_lib::world::tile::TileType::*;
 pub fn upload_tileset(ctx : &mut Context, selection : usize) -> Texture{
     match selection {
         0 => Texture::new(ctx, "./resources/tileset/tileset.png"),
+        1 => Texture::new(ctx, "./resources/tileset/ts_minecraft.png"),
+        2 => Texture::new(ctx, "./resources/tileset/ts_minecraft.png"),
         _ => Texture::new(ctx, "./resources/tileset/ts_minecraft.png")
     }.expect("failed to upload texture")
 }
 pub fn upload_contentset(ctx : &mut Context, selection : usize) -> Texture{
     match selection {
         0 => Texture::new(ctx, "./resources/contentset/contentset.png"),
+        1 => Texture::new(ctx, "./resources/contentset/cs_minecraft.png"),
+        2 => Texture::new(ctx, "./resources/contentset/cs_minecraft.png"),
         _ => Texture::new(ctx, "./resources/contentset/cs_minecraft.png")
     }.expect("failed to upload contentset")
 }

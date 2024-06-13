@@ -20,7 +20,7 @@ pub mod visbackpack;
 pub mod visweather;
 
 pub(crate) const PIXEL: f32 = 64.0;
-pub(crate) const SCALE: f32 = 0.5;
+pub(crate) const SCALE: f32 = 0.2;
 pub(crate) const BP_SCALE: f32 = 0.5;
 pub(crate) const TOP_OFFSET: f32 = 64.0;
 
@@ -177,7 +177,7 @@ impl Visualizer {
                 style: 0,
                 map: VisMap::new(size),
                 texts: VisEnergy::new(ctx),
-                backpack: VisBackPack::new(ctx, 10),
+                backpack: VisBackPack::new(ctx, 16),
                 receiver,
                 show_backpack: false,
                 map_pos: (0.0, 0.0),
@@ -246,6 +246,11 @@ impl State for Visualizer {
                 //zoom
                 Key::I => {
                     self.scale += 0.1;
+                    self.map_pos.1 += PIXEL * scale;
+                    self.map_pos.0 += PIXEL * scale;
+                }
+                Key::O => {
+                    self.scale -= 0.05;
                     self.map_pos.1 += PIXEL * scale;
                     self.map_pos.0 += PIXEL * scale;
                 }

@@ -39,7 +39,7 @@ impl VisBackPack {
         let texture = upload_contentset(ctx, style);
         let diff = 0.12;
         let content_scale = self.scale - diff;
-        let to_center_pos = PIXEL * self.scale - PIXEL * (SCALE - diff / 2.0);
+        let to_center_pos = pos.0 + diff;
 
         for (cont, quantity) in &self.contents {
             self.text.set_content(format!("{}", quantity));
@@ -78,7 +78,7 @@ impl VisBackPack {
         }
     }
     pub fn update(&mut self, new_backpack: HashMap<Content, usize>) {
-        println!("backpack has been updated!");
+        //println!("backpack has been updated!");
         self.contents = new_backpack;
     }
 }
