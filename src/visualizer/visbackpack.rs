@@ -41,16 +41,18 @@ impl VisBackPack {
         let content_scale = self.scale - diff;
         let to_center_pos = pos.0 + diff;
 
+        let mut voids = 0;
+
         for (cont, quantity) in &self.contents {
             self.text.set_content(format!("{}", quantity));
-            self.square.draw(
-                ctx,
-                DrawParams::new()
-                    .position(Vec2::new(x + pos.0, pos.1))
-                    .scale(Vec2::new(self.scale, self.scale)),
-            );
-
             if quantity > &0usize {
+                self.square.draw(
+                    ctx,
+                    DrawParams::new()
+                        .position(Vec2::new(x + pos.0, pos.1))
+                        .scale(Vec2::new(self.scale, self.scale)),
+                );
+
                 cont.draw(
                     texture.clone(),
                     ctx,
@@ -64,14 +66,13 @@ impl VisBackPack {
                         .position(Vec2::new(x + pos.0, pos.1))
                         .scale(Vec2::new(self.scale * 2.0, self.scale * 2.0)),
                 );
+                x += PIXEL * self.scale;
             }
-
-
-            x += PIXEL * self.scale;
+            else {
+                voids +=1;
+            }
         }
 
-
-        let voids = self.size - self.contents.len();
         for _ in 0..voids {
             self.square.draw(
                 ctx,
