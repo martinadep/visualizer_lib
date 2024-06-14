@@ -12,6 +12,7 @@ use crate::visualizer::textures::Texturizable;
 use crate::visualizer::visbackpack::VisBackPack;
 use crate::visualizer::visenergy::VisEnergy;
 use crate::visualizer::vismap::VisMap;
+use crate::{WINDOW_HEIGHT, WINDOW_WIDTH};
 
 pub mod textures;
 pub mod vismap;
@@ -180,7 +181,7 @@ impl Visualizer {
                 backpack: VisBackPack::new(ctx, 16),
                 receiver,
                 show_backpack: true,
-                map_pos: (0.0, 0.0),
+                map_pos: (WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0),
                 scale: SCALE,
             }
         )
