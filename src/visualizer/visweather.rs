@@ -53,7 +53,7 @@ impl Drop {
 }
 
 pub struct VisWeather {
-    droptype: WeatherType,
+    pub droptype: WeatherType,
     rng: ThreadRng,
     drops: Vec<Drop>,
 }

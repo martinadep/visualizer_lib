@@ -117,7 +117,9 @@ impl VisMap {
 
     ///updates the weather
     pub fn update_weather(&mut self, weather_type: WeatherType) {
-        println!("weather updated from {:?} to {:?}", self.visweather, weather_type);
-        self.visweather = VisWeather::new(weather_type);
+        if weather_type != self.visweather.droptype {
+            println!("weather updated from {:?} to {:?}", self.visweather, weather_type);
+            self.visweather = VisWeather::new(weather_type);
+        }
     }
 }
