@@ -169,7 +169,7 @@ pub struct Visualizer {
     show_backpack: bool,
     map_pos: (f32, f32),
     scale: f32,
-    first: bool;
+    first: bool,
 }
 
 impl Visualizer {
