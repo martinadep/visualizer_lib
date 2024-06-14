@@ -15,7 +15,7 @@ pub struct VisMap {
     visweather: VisWeather,
 
     world_size: usize,
-    robot_position: (usize, usize),
+    pub robot_position: (usize, usize),
 }
 
 impl VisMap {
