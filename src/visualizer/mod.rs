@@ -181,7 +181,7 @@ impl Visualizer {
                 backpack: VisBackPack::new(ctx, 16),
                 receiver,
                 show_backpack: true,
-                map_pos: (-(WINDOW_WIDTH / 2) as f32, -(WINDOW_HEIGHT / 2) as f32),
+                map_pos: (0.0, 0.0),
                 scale: SCALE,
             }
         )
@@ -214,7 +214,11 @@ impl State for Visualizer {
             Ok(data) => {
                 self.update_energy(data.recv_energy);
                 //println!("received {}", data.recv_energy);
-                self.update_robot_pos(data.recv_coordinates);
+                let c = data.recv_coordinates;
+                self.update_robot_pos(c);
+
+                self.map_pos = (-(PIXEL * SCALE * c.0 as f32)/2.0, -(PIXEL * SCALE * c.1 as f32)/2.0);
+
                 if let Some(view) = data.recv_discovered_tiles {
                     self.update_map(view, ctx)
                 }
