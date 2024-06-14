@@ -169,6 +169,7 @@ pub struct Visualizer {
     show_backpack: bool,
     map_pos: (f32, f32),
     scale: f32,
+    first: bool;
 }
 
 impl Visualizer {
@@ -183,6 +184,7 @@ impl Visualizer {
                 show_backpack: true,
                 map_pos: (0.0, 0.0),
                 scale: SCALE,
+                first : true,
             }
         )
     }
@@ -217,7 +219,10 @@ impl State for Visualizer {
                 let c = data.recv_coordinates;
                 self.update_robot_pos(c);
 
-                self.map_pos = (-(PIXEL * SCALE * c.0 as f32)/2.0, -(PIXEL * SCALE * c.1 as f32)/2.0);
+                if self.first {
+                    self.map_pos = (-(PIXEL * self.scale * c.0 as f32)/2.0, -(PIXEL * self.scale * c.1 as f32)/2.0);
+                }
+                self.first = false;
 
                 if let Some(view) = data.recv_discovered_tiles {
                     self.update_map(view, ctx)
