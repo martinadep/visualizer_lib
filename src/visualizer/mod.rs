@@ -181,7 +181,7 @@ impl Visualizer {
                 backpack: VisBackPack::new(ctx, 16),
                 receiver,
                 show_backpack: true,
-                map_pos: (WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0),
+                map_pos: ((WINDOW_WIDTH / 2) as f32, (WINDOW_HEIGHT / 2) as f32),
                 scale: SCALE,
             }
         )
