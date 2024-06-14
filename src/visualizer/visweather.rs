@@ -13,7 +13,7 @@ use crate::visualizer::textures::Texturizable;
 
 const INITIAL_DROPS: usize = 100;
 const GRAVITY: f32 = 2.5;
-const CLOUDS: usize = 35;
+const CLOUDS: usize = 10;
 
 pub struct Drop {
     drop_type: WeatherType,
