@@ -21,7 +21,7 @@ pub mod visbackpack;
 pub mod visweather;
 
 pub(crate) const PIXEL: f32 = 64.0;
-pub(crate) const SCALE: f32 = 0.3;
+pub(crate) const SCALE: f32 = 0.4;
 pub(crate) const BP_SCALE: f32 = 0.5;
 pub(crate) const TOP_OFFSET: f32 = 64.0;
 
