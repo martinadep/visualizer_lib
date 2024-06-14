@@ -256,13 +256,13 @@ impl State for Visualizer {
                 //zoom
                 Key::I => {
                     self.scale += 0.1;
-                    self.map_pos.1 += PIXEL * scale;
-                    self.map_pos.0 += PIXEL * scale;
+                    self.map_pos.1 -= PIXEL * scale;
+                    self.map_pos.0 -= PIXEL * scale;
                 }
                 Key::O => {
                     self.scale -= 0.05;
-                    self.map_pos.1 += PIXEL * scale;
-                    self.map_pos.0 += PIXEL * scale;
+                    self.map_pos.1 -= PIXEL * scale;
+                    self.map_pos.0 -= PIXEL * scale;
                 }
                 //style
                 Key::Num0 => { self.style = 0 }
