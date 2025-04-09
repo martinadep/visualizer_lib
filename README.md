@@ -1,4 +1,4 @@
-#Visualizer for Advanced Programming course
+# Visualizer for Advanced Programming course
 This is a Rust implementation for visualizing in Real-Time what the AI Agent is doing on the map
 
 
